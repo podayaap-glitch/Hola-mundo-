@@ -1,0 +1,17 @@
+workflows:
+  android-debug:
+    name: Android Debug
+    environment:
+      flutter: stable
+    scripts:
+      - name: Preparar y crear Android
+        script: |
+          mkdir -p lib
+          cp biblioteca/main.dart lib/main.dart || true
+          flutter create . --platforms=android
+      - name: Dependencias
+        script: flutter pub get
+      - name: Build APK
+        script: flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
