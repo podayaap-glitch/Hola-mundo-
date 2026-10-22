@@ -1,17 +1,20 @@
+
 workflows:
-  android-debug:
-    name: Android Debug
+  android-workflow:
+    name: Android Workflow
+    max_build_duration: 60
+    instance_type: mac_mini_m1
     environment:
       flutter: stable
     scripts:
-      - name: Preparar y crear Android
+      - name: Fix project
         script: |
           mkdir -p lib
           cp biblioteca/main.dart lib/main.dart || true
           flutter create . --platforms=android
-      - name: Dependencias
-        script: flutter pub get
+          flutter pub get
       - name: Build APK
-        script: flutter build apk --debug
+        script: |
+          flutter build apk --debug
     artifacts:
       - build/app/outputs/flutter-apk/*.apk
