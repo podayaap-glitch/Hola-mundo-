@@ -10,7 +10,7 @@ workflows:
       - name: Fix project
         script: |
           mkdir -p lib
-          cp biblioteca/main.dart lib/main.dart || true
+          cp biblioteca/main_cortador.dart lib/main.dart || true
           flutter create . --platforms=android
           flutter pub get
       - name: Build APK
